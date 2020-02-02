@@ -80,7 +80,7 @@ require_once('functions.php');
             });
         });
     });
-
+ 
     function resetForm() {
         $('#contact')[0].reset();
     }
