@@ -16,26 +16,31 @@ require_once('functions.php');
 
 <body>
     <div class="wrapper">
-        <form method="post" id="contact" action="includes/scripts/ajax/newMessage.php">
+        <form method="post" id="contact" action="">
             <div class="form-group">
                 <label>Nom* : </label>
                 <input type="text" id="nom" name="nom" value="" require/>
+                <span class="comment"></span>
             </div>
             <div class="form-group">
                 <label>Prénom* : </label>
                 <input type="text" id="prenom" name="prenom" value="" require/>
+                <span class="comment"></span>
             </div>
             <div class="form-group">
                 <label>Email* : </label>
                 <input type="email" id="email" name="email" value="" require/>
+                <span class="comment"></span>
             </div>
             <div class="form-group">
                 <label>Votre message* : </label>
                 <textarea id="message" name="message" value="" require/></textarea>
+                <span class="comment"></span>
             </div>
             <div class="form-group">
                 <label>RGPD* : </label>
                 <input type="checkbox" id="rgpd" name="rgpd" value="false" require/>
+                <span class="comment"></span>
             </div>
     <p> Les champs marqués d'un * sont obligatoires </p>
             <button type="submit" id="valider" class="btn-valide"> Envoyer </button>
@@ -48,93 +53,38 @@ require_once('functions.php');
 <script src="includes/scripts/js/script.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        /**
-         * Si javascript est actif chez le client.
-         */  
-        $('#contact').removeAttr("action");
-        $('#valider').removeAttr("type");
+    $(function() {
+       
+        $('#contact').submit(function(e) {
+            e.preventDefault();
+            $('.comment').empty();
 
-        var nom = "";
-        var prenom = "";
-        var email = "";
-        var message = ""
-        var rgpd = false;
-        var ip = '192.168.1.250';
-
-        function controlForm() {
-            var isValid = true;
-
-            nom = $('#nom').val();
-            prenom = $('#prenom').val();
-            email = $('#email').val();
-            message = $('#message').val();
-
-            error = "Merci de bien vouloir valider les éléments suivants : ";
-
-            if (nom == "") {
-                isValid = false;
-                error += "Nom, ";
-            }
-            if (prenom == "") {
-                isValid = false;
-                error += "Prénom, ";
-            }
-            if (email == "") {
-                isValid = false;
-                error += "Email, ";
-            }
-            if (message == "") {
-                isValid = false;
-                error += "Message, ";
-            }
-            if (!$('input[name=rgpd]').is(':checked')) {
-                isValid = false;
-                error += "Condition ";
-            }
-
-            error += "!";
-
-            if (isValid) {
-                addNewMessage(nom, prenom, email, message);
-            } else {
-                alert(error);
-            }
-        }
-
-        function addNewMessage(nom, prenom, email, message) {
+            var postData =  $("#contact").serialize();
             $.ajax({
-                type: "POST",
-                url: "includes/scripts/ajax/newMessage.php",
-                data: {
-                    nom: nom,
-                    prenom: prenom,
-                    email: email,
-                    message: message,
-                    ip: ip
-                },
-                success: function(data) {
-                    if(data == "") {
-                        resetForm();
+                type: 'POST',
+                url: 'includes/scripts/ajax/newMessage.php',
+                data: postData,
+                dataType: 'json',
+                success: function(result) {
+                    if(result.isValid) {
                         alert('Votre message a bien été envoyé. Merci');
+                        resetForm();
                     } else {
-                        alert(data);
+                       $('#nom + .comment').html(result.nomErr);
+                       $('#prenom + .comment').html(result.prenomErr);
+                       $('#email + .comment').html(result.emailErr);
+                       $('#message + .comment').html(result.messageErr);
+                       $('#messrgpdage + .comment').html(result.rgpdErr);
                     }
                 }
             });
-        }
-
-        function resetForm() {
-            $('#contact')[0].reset();
-        }
-
-        $('.btn-valide').click(function() {
-            controlForm();
-        });
-        $('.btn-reset').click(function() {
-            resetForm();
         });
     });
+
+    function resetForm() {
+        $('#contact')[0].reset();
+    }
+
 </script>
 
 </html>
