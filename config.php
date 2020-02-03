@@ -2,9 +2,9 @@
 class Database
 {
     private static $hote = 'localhost' ;
-    private static $bdd = '';
-    private static $dbUser = '';
-    private static $mdpBdd = '' ;
+    private static $bdd = 'modula';
+    private static $dbUser = 'bengi';
+    private static $mdpBdd = 'Rugbyman47' ;
 
     private static $pdo = null;
 
