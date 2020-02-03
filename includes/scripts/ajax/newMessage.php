@@ -13,7 +13,8 @@ $data = array(
     "nomErr" => "",
     "prenomErr" => "",
     "emailErr" => "",
-    "messageErr" => ""
+    "messageErr" => "",
+    "recaptchaErr" => ""
 );
 
 if(!empty($_POST)) {
@@ -24,6 +25,22 @@ if(!empty($_POST)) {
     $data["message"] = checkInput($_POST["message"]);
     $data["isValid"] = true;
     $data["ip"] = getIp();
+
+    // reCaptcha
+    $secret = "6LfBTNUUAAAAALh9MR_XihQYdV0o1ynihKE-dPVj";
+	$response = $_POST['g-recaptcha-response'];
+    $remoteip = getIp();
+    $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
+		. $secret
+		. "&response=" . $response
+		. "&remoteip=" . $remoteip;
+
+    $decode = json_decode(file_get_contents($api_url), true);
+    
+    if (!$decode['success'] == true) {
+        $data["isValid"] = false;
+        $data["recaptchaErr"] = 'Merci de prouver que vous êtes pas un robot !';
+	} 
 
     if(empty($data["nom"])) {
         $data["nomErr"] = 'Le nom est obligatoire';

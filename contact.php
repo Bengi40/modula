@@ -11,7 +11,7 @@ require_once('functions.php');
     <title>Contact</title>
 
     <link rel="stylesheet" href="includes/styles/style.css">
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -43,6 +43,12 @@ require_once('functions.php');
                 <span class="comment"></span>
             </div>
 
+            <div class="form-group">
+                <div id="recaptcha" class="g-recaptcha" data-sitekey="6LfBTNUUAAAAANyDYeLK6McFxHpgtTg_jC02vabY"></div>
+                <span class="comment"></span>
+            </div>
+            
+
             <p> Les champs marqués d'un * sont obligatoires </p>
             <button type="submit" id="valider" class="btn-valide"> Envoyer </button>
             <button type="button" class="btn-reset"> Annuler </button>
@@ -62,6 +68,7 @@ require_once('functions.php');
 
             if ($('#rgpd').is(':checked')) {
                 var postData = $('#contact').serialize();
+        
                 $.ajax({
                     type: 'POST',
                     url: 'includes/scripts/ajax/newMessage.php',
@@ -76,6 +83,7 @@ require_once('functions.php');
                             $('#prenom + .comment').html(result.prenomErr);
                             $('#email + .comment').html(result.emailErr);
                             $('#message + .comment').html(result.messageErr);
+                            $('#recaptcha + .comment').html(result.recaptchaErr);
                         }
                     }             
                 });
