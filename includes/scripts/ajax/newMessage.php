@@ -61,10 +61,11 @@ if(!empty($_POST)) {
     }
 
     if($data["isValid"]) {
+        $data["nomErr"] = $data["isValid"];
         $db = Database::connect();
         $statement = $db->prepare('
-        INSERT INTO contacts (nom,prenom,email,message,RGPD,datecontact,ip)
-        VALUES (?,?,?,?,?,NOW(),?)');
+        INSERT INTO contacts (nom,prenom,email,message,RGPD,date,heure,ip)
+        VALUES (?,?,?,?,?,CURDATE(),CURTIME(),?)');
 
         $statement->execute(array($data["nom"],$data["prenom"],$data["email"],$data["message"],$data["rgpd"],$data["ip"]));
         Database::disconnect();

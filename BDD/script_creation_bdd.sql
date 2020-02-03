@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS contacts (
 	email VARCHAR(50) NOT NULL,
 	message TEXT NOT NULL,
 	RGPD BOOLEAN NOT NULL,
-	datecontact datetime NOT NULL,
+	date date NOT NULL,
+	heure time NOT NULL,
 	ip VARCHAR(15) NOT NULL
 );
 
