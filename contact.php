@@ -19,30 +19,31 @@ require_once('functions.php');
         <form method="post" id="contact" action="">
             <div class="form-group">
                 <label>Nom* : </label>
-                <input type="text" id="nom" name="nom" value="" require/>
+                <input type="text" id="nom" name="nom" require />
                 <span class="comment"></span>
             </div>
             <div class="form-group">
                 <label>Prénom* : </label>
-                <input type="text" id="prenom" name="prenom" value="" require/>
+                <input type="text" id="prenom" name="prenom" require />
                 <span class="comment"></span>
             </div>
             <div class="form-group">
                 <label>Email* : </label>
-                <input type="email" id="email" name="email" value="" require/>
+                <input type="email" id="email" name="email" require />
                 <span class="comment"></span>
             </div>
             <div class="form-group">
                 <label>Votre message* : </label>
-                <textarea id="message" name="message" value="" require/></textarea>
+                <textarea id="message" name="message" require /></textarea>
                 <span class="comment"></span>
             </div>
             <div class="form-group">
-                <label>RGPD* : </label>
-                <input type="checkbox" id="rgpd" name="rgpd" value="false" require/>
+                <label for="rgpd">RGPD* : </label>
+                <input type="checkbox" id="rgpd" name="rgpd" require />
                 <span class="comment"></span>
             </div>
-    <p> Les champs marqués d'un * sont obligatoires </p>
+
+            <p> Les champs marqués d'un * sont obligatoires </p>
             <button type="submit" id="valider" class="btn-valide"> Envoyer </button>
             <button type="button" class="btn-reset"> Annuler </button>
         </form>
@@ -54,37 +55,39 @@ require_once('functions.php');
 
 <script type="text/javascript">
     $(function() {
-       
+
         $('#contact').submit(function(e) {
             e.preventDefault();
             $('.comment').empty();
 
-            var postData =  $("#contact").serialize();
-            $.ajax({
-                type: 'POST',
-                url: 'includes/scripts/ajax/newMessage.php',
-                data: postData,
-                dataType: 'json',
-                success: function(result) {
-                    if(result.isValid) {
-                        alert('Votre message a bien été envoyé. Merci');
-                        resetForm();
-                    } else {
-                       $('#nom + .comment').html(result.nomErr);
-                       $('#prenom + .comment').html(result.prenomErr);
-                       $('#email + .comment').html(result.emailErr);
-                       $('#message + .comment').html(result.messageErr);
-                       $('#messrgpdage + .comment').html(result.rgpdErr);
-                    }
-                }
-            });
+            if ($('#rgpd').is(':checked')) {
+                var postData = $('#contact').serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/scripts/ajax/newMessage.php',
+                    data: postData,
+                    dataType: 'json',
+                    success: function(result) {
+                        if (result.isValid) {
+                            alert('Votre message a bien été envoyé. Merci');
+                            resetForm();
+                        } else {
+                            $('#nom + .comment').html(result.nomErr);
+                            $('#prenom + .comment').html(result.prenomErr);
+                            $('#email + .comment').html(result.emailErr);
+                            $('#message + .comment').html(result.messageErr);
+                        }
+                    }             
+                });
+            } else {
+                $('#rgpd + .comment').html("Merci de valider les conditions");
+            }
         });
     });
- 
+
     function resetForm() {
         $('#contact')[0].reset();
     }
-
 </script>
 
 </html>

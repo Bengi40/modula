@@ -8,12 +8,12 @@ $data = array(
     "email" => "", 
     "message" => "", 
     "rgpd" => true,
+    "ip" => "",
     "isValid" => true,
     "nomErr" => "",
     "prenomErr" => "",
     "emailErr" => "",
-    "messageErr" => "",
-    "rgpdErr" => ""
+    "messageErr" => ""
 );
 
 if(!empty($_POST)) {
@@ -23,9 +23,7 @@ if(!empty($_POST)) {
     $data["email"] = checkInput($_POST["email"]);
     $data["message"] = checkInput($_POST["message"]);
     $data["isValid"] = true;
-  
-    $data["rgpd"] = $_POST["rgpd"];
-    $ip = '192.168.1.1';
+    $data["ip"] = getIp();
 
     if(empty($data["nom"])) {
         $data["nomErr"] = 'Le nom est obligatoire';
@@ -43,14 +41,9 @@ if(!empty($_POST)) {
         $data["isValid"] = false;
     }
 
-
     if(empty($data["message"])) {
         $data["messageErr"] = 'Le message est obligatoire';
         $data["isValid"] = false;
-    }
-    if(!$data["rgpd"]) {
-        $data["rgdpErr"]  = 'Veuillez valider les conditions';
-        $isValid = false;
     }
 
     if($data["isValid"]) {
@@ -59,7 +52,7 @@ if(!empty($_POST)) {
         INSERT INTO contacts (nom,prenom,email,message,RGPD,datecontact,ip)
         VALUES (?,?,?,?,?,NOW(),?)');
 
-        $statement->execute(array($data["nom"],$data["prenom"],$data["email"],$data["message"],$rgpd,$ip));
+        $statement->execute(array($data["nom"],$data["prenom"],$data["email"],$data["message"],$data["rgpd"],$data["ip"]));
         Database::disconnect();
     } 
 
