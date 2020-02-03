@@ -68,7 +68,7 @@ require_once('functions.php');
 
             if ($('#rgpd').is(':checked')) {
                 var postData = $('#contact').serialize();
-        
+                
                 $.ajax({
                     type: 'POST',
                     url: 'includes/scripts/ajax/newMessage.php',
@@ -95,6 +95,7 @@ require_once('functions.php');
 
     function resetForm() {
         $('#contact')[0].reset();
+        grecaptcha.reset();
     }
 </script>
 

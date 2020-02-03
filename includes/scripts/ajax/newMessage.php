@@ -9,6 +9,7 @@ $data = array(
     "message" => "", 
     "rgpd" => true,
     "ip" => "",
+    "reponse" => "",
     "isValid" => true,
     "nomErr" => "",
     "prenomErr" => "",
@@ -26,20 +27,16 @@ if(!empty($_POST)) {
     $data["isValid"] = true;
     $data["ip"] = getIp();
 
-    // reCaptcha
-    $secret = "6LfBTNUUAAAAALh9MR_XihQYdV0o1ynihKE-dPVj";
-	$response = $_POST['g-recaptcha-response'];
-    $remoteip = getIp();
-    $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
-		. $secret
-		. "&response=" . $response
-		. "&remoteip=" . $remoteip;
+    $data["reponse"] = $_POST['g-recaptcha-response'];
 
-    $decode = json_decode(file_get_contents($api_url), true);
-    
-    if (!$decode['success'] == true) {
+    $captcha = verifCaptcha($data["reponse"],$data["ip"]);
+
+    if(empty($data["reponse"])) {
+        $data["recaptchaErr"] = 'Merci de cocher la case afin de prouver que vous êtes un humain !';
         $data["isValid"] = false;
-        $data["recaptchaErr"] = 'Merci de prouver que vous êtes pas un robot !';
+    } else if (!$captcha['success'] == true) {
+        $data["recaptchaErr"] = 'Erreur lors de la transmission. Merci de contactez votre administrateur. ';
+        $data["isValid"] = false;
 	} 
 
     if(empty($data["nom"])) {

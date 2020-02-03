@@ -23,3 +23,17 @@ function getIp()
 	}
 	return $ip;
 }
+
+function verifCaptcha($reponse, $ip) {
+	$secret = "6LfBTNUUAAAAALh9MR_XihQYdV0o1ynihKE-dPVj";
+	$response = $reponse;
+    $remoteip = $ip;
+    $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
+		. $secret
+		. "&response=" . $response
+		. "&remoteip=" . $remoteip;
+
+    $decode = json_decode(file_get_contents($api_url), true);
+	
+	return $decode;   
+}
