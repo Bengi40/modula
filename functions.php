@@ -37,3 +37,9 @@ function verifCaptcha($reponse, $ip) {
 	
 	return $decode;   
 }
+
+function dateFr($dateAmericaine){
+	$date = explode("-",$dateAmericaine);
+	$nouvelleDate = $date[2].'/'.$date[1].'/'.$date[0];
+	return $nouvelleDate;
+}
