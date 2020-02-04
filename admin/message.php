@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../config.php');
 require_once('../functions.php');
 
@@ -24,6 +25,10 @@ Database::disconnect();
 </head>
 
 <body>
+	<?php
+if($_SESSION['role'] == 'admin') {
+	
+?>
 	<div class="wrapper">
 		<h2>Administration</h2>
 
@@ -60,6 +65,12 @@ Database::disconnect();
 			</div>
 		</div>
 	</div>
+	<?php	
+	} else{
+		print('valeur de session : ' .$_SESSION['role']);
+			print('vous n\'avez pas le droit d\'être ici');
+		}
+		?>
 </body>
 
 <script src="includes/scripts/js/jquery.js"></script>

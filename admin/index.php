@@ -1,16 +1,8 @@
 <?php
+session_start();
+
 require_once('../config.php');
 require_once('../functions.php');
-
-$db = Database::connect();
-$statement = $db->query('
-			SELECT 	id,date,heure,email
-			FROM contacts
-			ORDER BY date DESC,heure DESC
-		');
-$statement->execute();
-Database::disconnect();
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,98 +17,56 @@ Database::disconnect();
 
 <body>
 	<div class="wrapper">
-		<h2>Administration</h2>
-
-		<table id="contacts">
-			<tr>
-				<th>Date</th>
-				<th>Heure</th>
-				<th>Email</th>
-				<th>Action</th>
-			</tr>
-			<?php
-			while ($contacts = $statement->fetchObject()) {
-				$lignes = "";
-				$lignes .= "<tr>";
-				$lignes .= '<td class="id" hidden>' . $contacts->id . '</td>';
-				$lignes .= '<td>' . $contacts->date . '</td>';
-				$lignes .= '<td>' . $contacts->heure . '</td>';
-				$lignes .= '<td>' . $contacts->email . '</td>';
-				$lignes .= '<td> <button type="button" class="info">Info</button> </td>';
-				$lignes .= '</tr>';
-				print $lignes;
-			}
-			?>
-		</table>
-
-		<div id="modale">
-			<div class="modale">
-				<span>Bonjour </span><span id="close">close</span>
-				<div>
-					<ul class="infoContact">
-						
-					</ul>
-				</div>
+		<form id="signIn" method="POST">
+			<div class="form-group">
+				<label>Login* : </label>
+				<input type="text" id="login" name="login" require />
+				<span class="comment"></span>
 			</div>
-		</div>
+			<div class="form-group">
+				<label>MDP* : </label>
+				<input type="text" id="mdp" name="mdp" require />
+				<span class="comment"></span>
+			</div>
+			<button type="submit" id="valider"> Envoyer </button>
+			<button type="button" class="btn-reset"> Annuler </button>
+		</form>
 	</div>
 </body>
 
 <script src="includes/scripts/js/jquery.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
-		var idContact = 0;
-		var idLigne = 0;
-		var colonneTab = [];
+		$('#signIn').submit(function(e) {
+			e.preventDefault();
+			$('.comment').empty();
 
-		$('.info').click(function() {
-			$('.infoContact').empty();
-			$("#modale").css("display", "block");
-			idLigne = $(this).parent().parent().index();
-			colonneTab = infoColonneId();
-			idContact = colonneTab[idLigne];
-			getMessage();
-		});
-		$('#close').click(function() {
-			$("#modale").css("display", "none");
-		});
-
-		function infoColonneId() {
-			var tab = [];
-			$('#contacts tr').each(function() {
-				var id = $(this).find('td').eq(0).html();
-				tab.push(id);
-			});
-			return tab;
-		}
-
-		function getMessage() {
-			if (idContact != 0) {
-				$.ajax({
-					type: 'POST',
-					url: 'includes/scripts/ajax/viewMessage.php',
-					data: {
-						id: idContact
-					},
-					dataType: 'json',
-					success: function(result) {
-						if (result) {
-							$('#modale .infoContact').append(
-								'<li>Nom : ' + result.nom + ' </li>'	
-								+ '<li>Prénom : ' + result.prenom + ' </li>'
-								+ '<li>email : ' + result.email + ' </li>'
-								+ '<li>date : ' + result.date + ' </li>'
-								+ '<li>heure : ' + result.heure + ' </li>'
-								+ '<li>message : ' + result.message + ' </li>'
-							)
-						} 
-					},
-					error: function(err) {
-						alert(err.responseText);
+			var postData = $('#signIn').serialize();
+			$.ajax({
+				type: 'POST',
+				url: 'includes/scripts/ajax/signin.php',
+				data: postData,
+				dataType: 'json',
+				success: function(result) {
+					if (result.isValid) {
+						document.location.href = 'message.php';
+						resetForm();
+					} else {
+						if(result.signInErr) {
+							alert ('Le login et le mdp ne correspondent pas ! ');
+							resetForm();
+						} else {
+							$('#login + .comment').html(result.loginErr);
+							$('#mdp + .comment').html(result.mdpErr);
+							resetForm();
+						}
 					}
-				});
-			}
+				}
+			});
+		});
+
+		function resetForm() {
+			$('#signIn')[0].reset();
 		}
 	});
 </script>
