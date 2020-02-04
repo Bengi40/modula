@@ -1,10 +1,10 @@
 <?php
 class Database
 {
-    private static $hote = '' ;
-    private static $bdd = '';
-    private static $dbUser = '';
-    private static $mdpBdd = '' ;
+    private static $hote = 'localhost' ;
+    private static $bdd = 'modula';
+    private static $dbUser = 'bengi';
+    private static $mdpBdd = 'Rugbyman47' ;
 
     private static $pdo = null;
 
