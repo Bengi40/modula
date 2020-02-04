@@ -16,43 +16,49 @@ require_once('functions.php');
 
 <body>
     <div class="wrapper">
-        <form method="post" id="contact" action="">
-            <div class="form-group">
-                <label>Nom* : </label>
-                <input type="text" id="nom" name="nom" require />
-                <span class="comment"></span>
-            </div>
-            <div class="form-group">
-                <label>Prénom* : </label>
-                <input type="text" id="prenom" name="prenom" require />
-                <span class="comment"></span>
-            </div>
-            <div class="form-group">
-                <label>Email* : </label>
-                <input type="email" id="email" name="email" require />
-                <span class="comment"></span>
-            </div>
-            <div class="form-group">
-                <label>Votre message* : </label>
-                <textarea id="message" name="message" require /></textarea>
-                <span class="comment"></span>
-            </div>
-            <div class="form-group">
-                <label for="rgpd">RGPD* : </label>
-                <input type="checkbox" id="rgpd" name="rgpd" require />
-                <span class="comment"></span>
-            </div>
+        <section id="formulaireContact">
+            <form method="post" id="contact" action="">
+                <div class="form-group">
+                    <label>Nom * : </label>
+                    <input type="text" id="nom" name="nom" require />
+                    <span class="comment"></span>
+                </div>
+                <div class="form-group">
+                    <label>Prénom * : </label>
+                    <input type="text" id="prenom" name="prenom" require />
+                    <span class="comment"></span>
+                </div>
+                <div class="form-group">
+                    <label>Email * : </label>
+                    <input type="email" id="email" name="email" require />
+                    <span class="comment"></span>
+                </div>
+                <div class="form-group">
+                    <label>Votre message * : </label>
+                    <textarea id="message" name="message" require /></textarea>
+                    <span class="comment"></span>
+                </div>
 
-            <div class="form-group">
-                <div id="recaptcha" class="g-recaptcha" data-sitekey="6LfBTNUUAAAAANyDYeLK6McFxHpgtTg_jC02vabY"></div>
-                <span class="comment"></span>
-            </div>
-            
+                <div class="form-group">
+                    <div id="recaptcha" class="g-recaptcha" data-sitekey="6LfBTNUUAAAAANyDYeLK6McFxHpgtTg_jC02vabY"></div>
+                    <span class="comment"></span>
+                </div>
 
-            <p> Les champs marqués d'un * sont obligatoires </p>
-            <button type="submit" id="valider" class="btn-valide"> Envoyer </button>
-            <button type="button" class="btn-reset"> Annuler </button>
-        </form>
+                <div class="form-group">
+                    
+                    <input type="checkbox" id="rgpd" name="rgpd" require />
+                    <label for="rgpd">En acceptant nos conditions, vos données personnelles ne seront ni revendues, ni utilisées à des fins commerciales. * : </label>
+                    <span class="comment"></span>
+                </div>
+
+                <p class="require"> * Les champs marqués sont obligatoires </p>
+                <div id="form-footer">
+                    <button type="submit" id="valider" class="btn-valide"> Envoyer </button>
+                    <button type="button" class="btn-reset"> Annuler </button>
+                </div>
+
+            </form>
+        </section>
     </div>
 </body>
 
@@ -68,7 +74,7 @@ require_once('functions.php');
 
             if ($('#rgpd').is(':checked')) {
                 var postData = $('#contact').serialize();
-                
+
                 $.ajax({
                     type: 'POST',
                     url: 'includes/scripts/ajax/newMessage.php',
@@ -85,7 +91,7 @@ require_once('functions.php');
                             $('#message + .comment').html(result.messageErr);
                             $('#recaptcha + .comment').html(result.recaptchaErr);
                         }
-                    }             
+                    }
                 });
             } else {
                 $('#rgpd + .comment').html("Merci de valider les conditions");
