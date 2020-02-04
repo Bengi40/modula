@@ -67,7 +67,6 @@ if($_SESSION['role'] == 'admin') {
 	</div>
 	<?php	
 	} else{
-		print('valeur de session : ' .$_SESSION['role']);
 			print('vous n\'avez pas le droit d\'être ici');
 		}
 		?>
