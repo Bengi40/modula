@@ -17,20 +17,32 @@ require_once('../functions.php');
 
 <body>
 	<div class="wrapper">
-		<form id="signIn" method="POST">
-			<div class="form-group">
-				<label>Login* : </label>
-				<input type="text" id="login" name="login" require />
-				<span class="comment"></span>
+		<div class="container">
+			<div id="form-header">
+				<h2>Connexion Administrateur</h2>
 			</div>
-			<div class="form-group">
-				<label>MDP* : </label>
-				<input type="text" id="mdp" name="mdp" require />
-				<span class="comment"></span>
-			</div>
-			<button type="submit" id="valider"> Envoyer </button>
-			<button type="button" class="btn-reset"> Annuler </button>
-		</form>
+			<div class="granit-divider "></div>
+			<form id="signIn" method="POST">
+				<div class="form-group">
+					<div class="center">
+						<label>Login * : </label>
+						<input type="text" id="login" name="login" require />
+						<span class="comment"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>MDP * : </label>
+					<input type="text" id="mdp" name="mdp" require />
+					<span class="comment"></span>
+				</div>
+				<div id="form-footer">
+					<button type="submit" id="valider" class="btn-valide"> sign in </button>
+					<a href="../index.php" ><button type="button" class="btn-reset"> Annuler </button></a>
+				</div>
+
+			</form>
+		</div>
+
 	</div>
 </body>
 
@@ -52,8 +64,8 @@ require_once('../functions.php');
 						document.location.href = 'message.php';
 						resetForm();
 					} else {
-						if(result.signInErr) {
-							alert ('Le login et le mdp ne correspondent pas ! ');
+						if (result.signInErr) {
+							alert('Le login et le mdp ne correspondent pas ! ');
 							resetForm();
 						} else {
 							$('#login + .comment').html(result.loginErr);

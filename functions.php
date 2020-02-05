@@ -38,8 +38,8 @@ function verifCaptcha($reponse, $ip) {
 	return $decode;   
 }
 
-function dateFr($dateAmericaine){
-	$date = explode("-",$dateAmericaine);
+function dateFr($dateUs){
+	$date = explode("-",$dateUs);
 	$nouvelleDate = $date[2].'/'.$date[1].'/'.$date[0];
 	return $nouvelleDate;
 }
