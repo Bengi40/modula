@@ -3,6 +3,7 @@ session_start();
 
 require_once('../config.php');
 require_once('../functions.php');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@ require_once('../functions.php');
 					</div>
 					<div class="form-group">
 						<label>MDP * : </label>
-						<input type="text" id="mdp" name="mdp" require />
+						<input type="password" id="mdp" name="mdp" require />
 						<span class="comment"></span>
 					</div>
 					<div id="form-footer">

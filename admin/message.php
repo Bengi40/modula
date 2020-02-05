@@ -3,6 +3,7 @@ session_start();
 require_once('../config.php');
 require_once('../functions.php');
 
+$user = $_SESSION['name'];
 $db = Database::connect();
 $statement = $db->query('
 			SELECT 	id,date,heure,email
@@ -32,7 +33,7 @@ Database::disconnect();
 		<div class="wrapper">
 			<div class="container">
 				<header>
-					<h2>Vos Messages</h2>
+					<h2>Vos Messages</h2> <a href="includes/scripts/ajax/signin.php?login=<?php echo $user ?>"><button type="button" class="logout btn-reset">Déconnexion</button></a>
 				</header>
 				<div class="granit-divider "></div>
 				<section>
@@ -81,7 +82,7 @@ Database::disconnect();
 
 	<?php
 	} else {
-		print('vous n\'avez pas le droit d\'être ici');
+		header('Location: index.php');
 	}
 	?>
 </body>
