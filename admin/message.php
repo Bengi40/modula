@@ -49,7 +49,7 @@ Database::disconnect();
 							$lignes = '';
 							$lignes .= '<tr class="contact">';
 							$lignes .= '<td class="id" hidden>' . $contacts->id . '</td>';
-							$lignes .= '<td class="date">' . $contacts->date . '</td>';
+							$lignes .= '<td class="date">' . dateFr($contacts->date) . '</td>';
 							$lignes .= '<td class="heure">' . $contacts->heure . '</td>';
 							$lignes .= '<td class="email">' . $contacts->email . '</td>';
 							$lignes .= '<td class="action"> <button type="button" class="info btn-view">Détail</button> </td>';

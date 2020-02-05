@@ -30,7 +30,7 @@ if(!empty($_POST)) {
             $data['prenom'] = $info->prenom;
             $data['email'] = $info->email;
             $data['message'] = $info->message;
-            $data['date'] = $info->date;
+            $data['date'] = dateFr($info->date);
             $data['heure'] = $info->heure;
         }
     } 
