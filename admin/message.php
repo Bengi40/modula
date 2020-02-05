@@ -44,17 +44,21 @@ Database::disconnect();
 							<th class="action">Action</th>
 						</tr>
 						<?php
-						while ($contacts = $statement->fetchObject()) {
-
-							$lignes = '';
-							$lignes .= '<tr class="contact">';
-							$lignes .= '<td class="id" hidden>' . $contacts->id . '</td>';
-							$lignes .= '<td class="date">' . dateFr($contacts->date) . '</td>';
-							$lignes .= '<td class="heure">' . $contacts->heure . '</td>';
-							$lignes .= '<td class="email">' . $contacts->email . '</td>';
-							$lignes .= '<td class="action"> <button type="button" class="info btn-view">Détail</button> </td>';
-							$lignes .= '</tr>';
-							print $lignes;
+						
+						if(empty($contacts = $statement->fetchObject())) {
+							print '<tr><td colspan=4> Vous n\'avez pas de massage ! </td></tr>';
+						} else {
+							do {
+								$lignes = '';
+								$lignes .= '<tr class="contact">';
+								$lignes .= '<td class="id" hidden>' . $contacts->id . '</td>';
+								$lignes .= '<td class="date">' . dateFr($contacts->date) . '</td>';
+								$lignes .= '<td class="heure">' . $contacts->heure . '</td>';
+								$lignes .= '<td class="email">' . $contacts->email . '</td>';
+								$lignes .= '<td class="action"> <button type="button" class="info btn-view">Détail</button> </td>';
+								$lignes .= '</tr>';
+								print $lignes;
+							} while($contacts = $statement->fetchObject());
 						}
 						?>
 					</table>
