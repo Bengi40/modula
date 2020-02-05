@@ -16,34 +16,42 @@ require_once('../functions.php');
 </head>
 
 <body>
-	<div class="wrapper">
-		<div class="container">
-			<div id="form-header">
-				<h2>Connexion Administrateur</h2>
-			</div>
-			<div class="granit-divider "></div>
-			<form id="signIn" method="POST">
-				<div class="form-group">
-					<div class="center">
-						<label>Login * : </label>
-						<input type="text" id="login" name="login" require />
+	<?php
+	if (empty($_SESSION['role'])) {
+
+	?>
+
+		<div class="wrapper">
+			<div class="container">
+				<div id="form-header">
+					<h2>Connexion Administrateur</h2>
+				</div>
+				<div class="granit-divider "></div>
+				<form id="signIn" method="POST">
+					<div class="form-group">
+						<div class="center">
+							<label>Login * : </label>
+							<input type="text" id="login" name="login" require />
+							<span class="comment"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>MDP * : </label>
+						<input type="text" id="mdp" name="mdp" require />
 						<span class="comment"></span>
 					</div>
-				</div>
-				<div class="form-group">
-					<label>MDP * : </label>
-					<input type="text" id="mdp" name="mdp" require />
-					<span class="comment"></span>
-				</div>
-				<div id="form-footer">
-					<button type="submit" id="valider" class="btn-valide"> sign in </button>
-					<a href="../index.php" ><button type="button" class="btn-reset"> Annuler </button></a>
-				</div>
-
-			</form>
+					<div id="form-footer">
+						<button type="submit" id="valider" class="btn-valide"> sign in </button>
+						<a href="../index.php"><button type="button" class="btn-reset"> Annuler </button></a>
+					</div>
+				</form>
+			</div>
 		</div>
-
-	</div>
+	<?php
+	} else {
+		header('Location: message.php');
+	}
+	?>
 </body>
 
 <script src="includes/scripts/js/jquery.js"></script>
