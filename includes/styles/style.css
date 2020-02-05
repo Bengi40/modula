@@ -38,6 +38,7 @@ body{
 }
 
 .comment{
+	display: block;
 	color :red;
 	font-weight: bold;
 }
