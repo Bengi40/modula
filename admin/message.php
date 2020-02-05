@@ -3,8 +3,7 @@ session_start();
 require_once('../config.php');
 require_once('../functions.php');
 
-$_SESSION['role'] = "admin";
-
+$user = $_SESSION['name'];
 $db = Database::connect();
 $statement = $db->query('
 			SELECT 	id,date,heure,email
@@ -34,7 +33,7 @@ Database::disconnect();
 		<div class="wrapper">
 			<div class="container">
 				<header>
-					<h2>Vos Messages</h2>
+					<h2>Vos Messages</h2> <a href="includes/scripts/ajax/signin.php?login=<?php echo $user ?>"><button type="button" class="logout btn-reset">Déconnexion</button></a>
 				</header>
 				<div class="granit-divider "></div>
 				<section>
@@ -46,17 +45,21 @@ Database::disconnect();
 							<th class="action">Action</th>
 						</tr>
 						<?php
-						while ($contacts = $statement->fetchObject()) {
-
-							$lignes = '';
-							$lignes .= '<tr class="contact">';
-							$lignes .= '<td class="id" hidden>' . $contacts->id . '</td>';
-							$lignes .= '<td class="date">' . $contacts->date . '</td>';
-							$lignes .= '<td class="heure">' . $contacts->heure . '</td>';
-							$lignes .= '<td class="email">' . $contacts->email . '</td>';
-							$lignes .= '<td class="action"> <button type="button" class="info btn-view">Détail</button> </td>';
-							$lignes .= '</tr>';
-							print $lignes;
+						
+						if(empty($contacts = $statement->fetchObject())) {
+							print '<tr><td colspan=4> Vous n\'avez pas de massage ! </td></tr>';
+						} else {
+							do {
+								$lignes = '';
+								$lignes .= '<tr class="contact">';
+								$lignes .= '<td class="id" hidden>' . $contacts->id . '</td>';
+								$lignes .= '<td class="date">' . dateFr($contacts->date) . '</td>';
+								$lignes .= '<td class="heure">' . $contacts->heure . '</td>';
+								$lignes .= '<td class="email">' . $contacts->email . '</td>';
+								$lignes .= '<td class="action"> <button type="button" class="info btn-view">Détail</button> </td>';
+								$lignes .= '</tr>';
+								print $lignes;
+							} while($contacts = $statement->fetchObject());
 						}
 						?>
 					</table>
@@ -79,7 +82,7 @@ Database::disconnect();
 
 	<?php
 	} else {
-		print('vous n\'avez pas le droit d\'être ici');
+		header('Location: index.php');
 	}
 	?>
 </body>

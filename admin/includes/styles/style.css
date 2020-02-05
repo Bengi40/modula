@@ -134,10 +134,12 @@ header {
 	height: 100px;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 header h2 {
 	font-size: 32px;
 	margin-left: 30px;
+	display: inline-block;
 }
 section {
 	width: 100%;

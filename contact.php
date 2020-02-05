@@ -49,16 +49,15 @@ require_once('functions.php');
                 </div>
 
                 <div class="form-group">
-
                     <input type="checkbox" id="rgpd" name="rgpd" require />
-                    <label for="rgpd">En acceptant nos conditions, vos données personnelles ne seront ni revendues, ni utilisées à des fins commerciales. * : </label>
+                    <label for="rgpd">En acceptant nos conditions, vos données personnelles ne seront ni revendues, ni utilisées à des fins commerciales. * </label>
                     <span class="comment"></span>
                 </div>
 
                 <p class="require"> * Les champs marqués sont obligatoires </p>
                 <div id="form-footer">
                     <button type="submit" id="valider" class="btn-valide"> Envoyer </button>
-                    <button type="button" class="btn-reset"> Annuler </button>
+                    <a href="index.php"><button type="button" class="btn-reset"> Annuler </button></a>
                 </div>
 
             </form>
@@ -98,7 +97,8 @@ require_once('functions.php');
                     }
                 });
             } else {
-                $('#rgpd + .comment').html("Merci de valider les conditions");
+                console.log('error')
+                $('#rgpd + label + .comment').html("Merci de valider les conditions");
             }
         });
     });
