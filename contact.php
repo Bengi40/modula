@@ -17,6 +17,10 @@ require_once('functions.php');
 <body>
     <div class="wrapper">
         <section id="formulaireContact">
+            <div id="form-header">
+                <h2>Contactez-Nous</h2>
+            </div>
+            <div class="granit-divider"></div>
             <form method="post" id="contact" action="">
                 <div class="form-group">
                     <label>Nom * : </label>
@@ -45,7 +49,7 @@ require_once('functions.php');
                 </div>
 
                 <div class="form-group">
-                    
+
                     <input type="checkbox" id="rgpd" name="rgpd" require />
                     <label for="rgpd">En acceptant nos conditions, vos données personnelles ne seront ni revendues, ni utilisées à des fins commerciales. * : </label>
                     <span class="comment"></span>
