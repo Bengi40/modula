@@ -3,6 +3,8 @@ session_start();
 require_once('../config.php');
 require_once('../functions.php');
 
+$_SESSION['role'] = "admin";
+
 $db = Database::connect();
 $statement = $db->query('
 			SELECT 	id,date,heure,email
@@ -45,31 +47,36 @@ Database::disconnect();
 						</tr>
 						<?php
 						while ($contacts = $statement->fetchObject()) {
+
 							$lignes = '';
 							$lignes .= '<tr class="contact">';
 							$lignes .= '<td class="id" hidden>' . $contacts->id . '</td>';
 							$lignes .= '<td class="date">' . $contacts->date . '</td>';
 							$lignes .= '<td class="heure">' . $contacts->heure . '</td>';
 							$lignes .= '<td class="email">' . $contacts->email . '</td>';
-							$lignes .= '<td class="action"> <button type="button" class="info btn-view">Info</button> </td>';
+							$lignes .= '<td class="action"> <button type="button" class="info btn-view">Détail</button> </td>';
 							$lignes .= '</tr>';
 							print $lignes;
 						}
 						?>
 					</table>
-
-					<div id="modale">
-						<div class="modale">
-							<span>Bonjour </span><span id="close">close</span>
-							<div>
-								<ul class="infoContact">
-								</ul>
-							</div>
-						</div>
-					</div>
 				</section>
+
+			</div>
+			<div id="modale">
+				<div class="modale">
+					<div id="modale-header">
+						<h2>Détail contact</h2>
+						<span class="btn-reset close">Close</span>
+					</div>
+					<div class="granit-divider "></div>
+					<div class="infoContact">
+						
+					</div>
+				</div>
 			</div>
 		</div>
+
 	<?php
 	} else {
 		print('vous n\'avez pas le droit d\'être ici');
@@ -87,13 +94,13 @@ Database::disconnect();
 
 		$('.info').click(function() {
 			$('.infoContact').empty();
-			$("#modale").css("display", "block");
+			$("#modale").css("display", "flex");
 			idLigne = $(this).parent().parent().index();
 			colonneTab = infoColonneId();
 			idContact = colonneTab[idLigne];
 			getMessage();
 		});
-		$('#close').click(function() {
+		$('.close').click(function() {
 			$("#modale").css("display", "none");
 		});
 
@@ -118,12 +125,16 @@ Database::disconnect();
 					success: function(result) {
 						if (result) {
 							$('#modale .infoContact').append(
-								'<li>Nom : ' + result.nom + ' </li>' +
-								'<li>Prénom : ' + result.prenom + ' </li>' +
-								'<li>email : ' + result.email + ' </li>' +
-								'<li>date : ' + result.date + ' </li>' +
-								'<li>heure : ' + result.heure + ' </li>' +
-								'<li>message : ' + result.message + ' </li>'
+
+								'<div id="detail">' +
+									'<div class="detail-nom">Mr ou Mme ' + result.nom + ' ' + result.prenom + '</div>' +
+									'<div class="detail-date">Le ' + result.date + ' à '  + result.heure + '</div>' +
+								'</div>' +
+								'<div class="detail-email">'+ result.email +'</div>' +
+								'<div class="detail-message">'+
+								'	<div>Message :</div>' +
+								'	<div> ' + result.message + '</div>' +
+								'</div>'
 							)
 						}
 					},

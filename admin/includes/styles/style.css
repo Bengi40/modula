@@ -19,10 +19,6 @@ body {
 	margin: auto;
 }
 
-#modale {
-	display: none;
-}
-
 .granit-divider {
 	width: 80%;
     height: 2px;
@@ -33,34 +29,32 @@ body {
 /* Bouton Validation */
 
 .btn-valide {
-	width: 100px;
-	height: 50px;
 	margin-right: 10px;
 	background-color: #5cb85c;
 	color: white;
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 10px;
+	padding: 10px;
 }
 
 .btn-reset {
-	width: 100px;
-	height: 50px;
 	background-color: #d9534f;
 	color: white;
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 10px;
+	padding: 10px;
+	
 }
 
 .btn-view {
-	width: 50px;
-	height: 25px;
 	background-color: #0275d8;
 	color: white;
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 10px;
+	padding: 10px;
 }
 
 .comment {
@@ -84,7 +78,10 @@ body {
 	margin: auto;
 	margin-top: 50px;
 	padding: 15px;
+	padding-bottom: 50px;;
 	border-radius: 10px;
+	z-index: 100;
+	justify-content: center;
 }
 
 #form-header {
@@ -140,19 +137,17 @@ header {
 }
 header h2 {
 	font-size: 32px;
-	
 	margin-left: 30px;
 }
 section {
 	width: 100%;
-	display: flex;
-	justify-content: center;
 	margin-top: 30px;
 }
 #contacts {
 	width: 100%;
-	border-collapse:collapse;
+	border-collapse: collapse;
 	font-weight: bold;
+	
 }
 
 #contacts td, #contacts th {
@@ -175,4 +170,64 @@ section {
 	font-size : 25px;
 }
 
+/* ============================= */
+/* ============================= */
+/* =========== MODALE ========== */
+/* ============================= */
+/* ============================= */
+
+#modale {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	justify-content: center;
+	align-items: center;
+}
+#modale .modale {
+	position: fixed;
+	padding: 30px;
+	width: 70%;
+	height: 50%;
+	background-image:radial-gradient(#303030,rgb(218, 197, 197) );
+	border: 1px solid black;
+	border-radius: 20px;
+	overflow: auto;
+}
+
+#modale-header {
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
+}
+#modale-header h3 {
+	display: inline-block;
+}
+
+.infoContact {
+	margin-top: 30px;
+}
+
+#detail{
+	display: flex;
+	justify-content: space-between;
+}
+
+.detail-nom, .detail-date, .detail-email, .detail-message {
+	font-size: 20px;
+}
+
+.detail-nom, .detail-date{
+	display: inline-block;
+	justify-content: space-between;
+}
+.detail-email{
+	margin-top : 20px;
+	margin-bottom: 20px;
+}
 
