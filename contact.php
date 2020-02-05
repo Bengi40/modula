@@ -58,7 +58,7 @@ require_once('functions.php');
                 <p class="require"> * Les champs marqués sont obligatoires </p>
                 <div id="form-footer">
                     <button type="submit" id="valider" class="btn-valide"> Envoyer </button>
-                    <button type="button" class="btn-reset"> Annuler </button>
+                    <a href="index.php"><button type="button" class="btn-reset"> Annuler </button></a>
                 </div>
 
             </form>
