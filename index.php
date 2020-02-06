@@ -17,15 +17,22 @@ require_once('functions.php');
 	<div class="wrapper">
 		<?php include('nav.php'); ?>
 
-		<div id="carrousel">
-			<span class="prev">	< </span> 
-				<img src="includes/img/sony-annonces-CES-2020.jpg" />
-				<img src="includes/img/ps5-disign.jpg" />
-				<img src="includes/img/gta6.jpg" />
-				<span class="next"> > </span>
-		</div>
+		<section id="carrousel">
+			<div class="carrousel">
+				<span class="prev">	< </span> 
+					<img src="includes/img/sony-annonces-CES-2020.jpg" />
+					<img src="includes/img/ps5-disign.jpg" />
+					<img src="includes/img/gta6.jpg" />
+					<span class="next"> > </span>
 
-		<div class="granit-divider-sm"></div>
+					
+			</div>
+
+			<div class="granit-divider-sm"></div>
+		</section>
+		
+
+		
 
 		<section id="event">
 			<h2>Evénement </h2>
