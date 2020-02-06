@@ -16,6 +16,16 @@ body{
 	margin:auto;
 }
 
+section {
+	width: 100%;
+}
+
+section h2 {
+	font-size: 32px;
+	text-align: center;
+	margin:0;
+}
+
 .btn-valide {
 	width: 100px;
 	height: 50px;
@@ -50,6 +60,144 @@ body{
     margin: 0 auto;
 }
 
+.granit-divider-sm {
+	width: 20%;
+    height: 2px;
+    background: #2f353b;
+    margin: 50px auto;
+}
+
+/* ============================= */
+/* ============================= */
+/* ========= NAVIGATION ======== */
+/* ============================= */
+/* ============================= */
+nav{
+	width: 100%;
+	height: 86px;
+	border-bottom: 2px solid #003791;
+	border-radius: 20px 0 0 20px;
+	display:flex;;
+}
+.logo{
+	height: 80px;
+	background-color: #003791;
+	border-top: 8px solid #003791;
+	border-radius: 15px 0 0 15px;
+}
+#logo, #accueil, #nav-contact {
+	display: inline-block;
+}
+#accueil, #nav-contact{
+	width: 110px;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#accueil a, #nav-contact a {
+	text-decoration: none;
+	color: unset;
+	height: 86px;
+	display: flex;
+	align-items: center;
+}
+
+#accueil:hover, #nav-contact:hover{
+	background-color: #003791;
+	color: white;
+	font-weight: bold;
+}
+
+#nav{
+	display: flex;
+	align-items: center;
+}
+
+/* ============================= */
+/* ============================= */
+/* ========= carrousel ========= */
+/* ============================= */
+/* ============================= */
+#carrousel{
+	width: 100%;
+	height: 500px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+}
+#carrousel img {
+	z-index: 9000;
+}
+.prev, .next {
+	font-size: 58px;
+	font-weight: bold;
+	background-color: white;
+	opacity: 0.3;
+	z-index: 9999;
+}
+.prev:hover, .next:hover {
+	opacity: 0.9;
+}
+
+.prev {
+	position: relative;
+	left: 40px;
+}
+.next{
+	position: relative;
+	right: 40px;
+}
+
+/* ============================= */
+/* ============================= */
+/* ========= Evénement ========= */
+/* ============================= */
+/* ============================= */
+#event h2 {
+	margin-bottom: 50px;;
+}
+#event .articles{
+	display: flex;
+	justify-content: space-evenly;
+	width:100%;
+	align-items: center;
+}
+#event a {
+	text-decoration: none;
+}
+#event article{
+	height: 400px;
+	width: 30%;
+	display: inline-block;
+	border-radius: 5px;
+	margin-bottom: 200px;
+	background-color: rgb(47,53,63,0.7);
+}
+.article{
+	display: flex;
+	
+}
+.article img {
+	width: 100%;
+}
+.title-article{
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.article h4{
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	color: #fff;
+	font-size: 20px;
+}
+
+
 /* ============================= */
 /* ============================= */
 /* ========== CONTACT ========== */
@@ -58,8 +206,11 @@ body{
 
 #form-header {
 	height: 100px;
+	display: flex;
+	align-items: center;
+
 }
-#form-header, h2 {
+#form-header h2 {
 	font-size: 32px;
 	display: flex;
 	align-items: center;
