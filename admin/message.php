@@ -19,7 +19,7 @@ Database::disconnect();
 
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>Vos messages</title>
 
 	<link rel="stylesheet" href="includes/styles/style.css">
 

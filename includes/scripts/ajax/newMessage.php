@@ -70,8 +70,6 @@ if(!empty($_POST)) {
         $statement->execute(array($data["nom"],$data["prenom"],$data["email"],$data["message"],$data["rgpd"],$data["ip"]));
         Database::disconnect();
     } 
-
     echo json_encode($data);
-   
 }
 ?>

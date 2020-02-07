@@ -66,7 +66,6 @@ require_once('functions.php');
 </body>
 
 <script src="includes/scripts/js/jquery.js"></script>
-<script src="includes/scripts/js/script.js"></script>
 
 <script type="text/javascript">
     $(function() {
@@ -86,6 +85,7 @@ require_once('functions.php');
                     success: function(result) {
                         if (result.isValid) {
                             alert('Votre message a bien été envoyé. Merci');
+                            document.location.href="index.php";
                             resetForm();
                         } else {
                             $('#nom + .comment').html(result.nomErr);

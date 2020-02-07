@@ -20,19 +20,13 @@ require_once('functions.php');
 		<section id="carrousel">
 			<div class="carrousel">
 				<span class="prev">	< </span> 
-					<img src="includes/img/sony-annonces-CES-2020.jpg" />
-					<img src="includes/img/ps5-disign.jpg" />
-					<img src="includes/img/gta6.jpg" />
-					<span class="next"> > </span>
-
-					
+				<img src="includes/img/sony-annonces-CES-2020.jpg" />
+				<img src="includes/img/ps5-disign.jpg" />
+				<img src="includes/img/gta6.jpg" />
+				<span class="next"> > </span>		
 			</div>
-
 			<div class="granit-divider-sm"></div>
 		</section>
-		
-
-		
 
 		<section id="event">
 			<h2>Evénement </h2>
@@ -58,7 +52,6 @@ require_once('functions.php');
 			</div>
 
 		</section>
-
 	</div>
 </body>
 
@@ -76,14 +69,14 @@ require_once('functions.php');
 		$currentImg.css('display', 'block');
 
 
-		$('.next').click(function() { // image suivante
+		$('.next').click(function() { 
 
-			i++; // on incrémente le compteur
+			i++;
 
 			if (i <= indexImg) {
-				$img.css('display', 'none'); // on cache les images
-				$currentImg = $img.eq(i); // on définit la nouvelle image
-				$currentImg.css('display', 'block'); // puis on l'affiche
+				$img.css('display', 'none'); 
+				$currentImg = $img.eq(i); 
+				$currentImg.css('display', 'block');
 			} else {
 				i = indexImg;
 			}
@@ -91,9 +84,7 @@ require_once('functions.php');
 		});
 
 		$('.prev').click(function() { // image précédente
-
-			i--; // on décrémente le compteur, puis on réalise la même chose que pour la fonction "suivante"
-
+			i--; 
 			if (i >= 0) {
 				$img.css('display', 'none');
 				$currentImg = $img.eq(i);
@@ -101,30 +92,26 @@ require_once('functions.php');
 			} else {
 				i = 0;
 			}
-
 		});
 
 		function slideImg() {
-			setTimeout(function() { // on utilise une fonction anonyme
+			setTimeout(function() { 
 
-				if (i < indexImg) { // si le compteur est inférieur au dernier index
-					i++; // on l'incrémente
-				} else { // sinon, on le remet à 0 (première image)
+				if (i < indexImg) { 
+					i++; 
+				} else { 
 					i = 0;
 				}
-
 				$img.css('display', 'none');
 
 				$currentImg = $img.eq(i);
 				$currentImg.css('display', 'block');
 
-				slideImg(); // on oublie pas de relancer la fonction à la fin
+				slideImg(); 
 
-			}, 7000); // on définit l'intervalle à 7000 millisecondes (7s)
+			}, 7000);
 		}
-
-		slideImg(); // enfin, on lance la fonction une première fois
-
+		slideImg(); 
 
 	});
 </script>

@@ -10,7 +10,7 @@ require_once('../functions.php');
 
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>LogIn</title>
 
 	<link rel="stylesheet" href="includes/styles/style.css">
 
