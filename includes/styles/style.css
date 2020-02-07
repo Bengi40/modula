@@ -1,0 +1,345 @@
+/* ============================= */
+/* ============================= */
+/* ========== GENERAL ========== */
+/* ============================= */
+/* ============================= */
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: #fff;
+	width: auto;
+}
+.wrapper{
+	width: 960px;
+	margin:auto;
+}
+
+section {
+	width: 100%;
+}
+
+section h2 {
+	font-size: 32px;
+	text-align: center;
+	margin:0;
+}
+
+.btn-valide {
+	width: 100px;
+	height: 50px;
+	margin-right: 10px;
+	background-color: #5cb85c;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.btn-reset {
+	width: 100px;
+	height: 50px;
+	background-color: #d9534f;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.comment{
+	display: block;
+	color :red;
+	font-weight: bold;
+}
+
+.granit-divider {
+	width: 80%;
+    height: 2px;
+    background: #2f353b;
+    margin: 0 auto;
+}
+
+.granit-divider-sm {
+	width: 20%;
+    height: 2px;
+    background: #2f353b;
+    margin: 50px auto;
+}
+
+/* ============================= */
+/* ============================= */
+/* ========= NAVIGATION ======== */
+/* ============================= */
+/* ============================= */
+nav{
+	width: 100%;
+	height: 86px;
+	border-bottom: 2px solid #003791;
+	border-radius: 20px 0 0 20px;
+	display:flex;;
+}
+.logo{
+	height: 80px;
+	background-color: #003791;
+	border-top: 8px solid #003791;
+	border-radius: 15px 0 0 15px;
+}
+#logo, #accueil, #nav-contact {
+	display: inline-block;
+}
+#accueil, #nav-contact{
+	width: 110px;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#accueil a, #nav-contact a {
+	text-decoration: none;
+	color: unset;
+	height: 86px;
+	display: flex;
+	align-items: center;
+}
+
+#accueil:hover, #nav-contact:hover{
+	background-color: #003791;
+	color: white;
+	font-weight: bold;
+}
+
+#nav{
+	display: flex;
+	align-items: center;
+}
+
+/* ============================= */
+/* ============================= */
+/* ========= carrousel ========= */
+/* ============================= */
+/* ============================= */
+.carrousel{
+	width: 100%;
+	height: 500px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+}
+.carrousel img {
+	z-index: 9000;
+}
+.prev, .next {
+	font-size: 58px;
+	font-weight: bold;
+	background-color: white;
+	opacity: 0.3;
+	z-index: 9999;
+}
+.prev:hover, .next:hover {
+	opacity: 0.9;
+}
+
+.prev {
+	position: relative;
+	left: 40px;
+}
+.next{
+	position: relative;
+	right: 40px;
+}
+
+/* ============================= */
+/* ============================= */
+/* ========= Evénement ========= */
+/* ============================= */
+/* ============================= */
+#event h2 {
+	margin-bottom: 50px;;
+}
+#event .articles{
+	display: flex;
+	justify-content: space-evenly;
+	width:100%;
+	align-items: center;
+}
+#event a {
+	text-decoration: none;
+}
+#event article{
+	height: 400px;
+	width: 30%;
+	display: inline-block;
+	border-radius: 5px;
+	margin-bottom: 200px;
+	background-color: rgb(47,53,63,0.7);
+}
+.article{
+	display: flex;
+	
+}
+.article img {
+	width: 100%;
+}
+.title-article{
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.article h4{
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	color: #fff;
+	font-size: 20px;
+}
+
+
+/* ============================= */
+/* ============================= */
+/* ========== CONTACT ========== */
+/* ============================= */
+/* ============================= */
+
+#form-header {
+	height: 100px;
+	display: flex;
+	align-items: center;
+
+}
+#form-header h2 {
+	font-size: 32px;
+	display: flex;
+	align-items: center;
+	margin-left: 30px;
+}
+
+#formulaireContact {
+	background-image:radial-gradient(#303030, white);
+	width: 80%;
+	margin: auto;
+	margin-top : 50px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#contact {
+	width: 80%;
+	margin: auto;
+	padding: 10px;
+	font-size: 20px;
+}
+.form-group {
+	margin-top: 10px;
+	margin-bottom: 10px;
+} 
+#nom, #prenom, #email, #message {
+	display: block;
+	margin-top: 5px;
+}
+
+#nom, #prenom, #email {
+	justify-content: space-around;
+	width: 250px;
+}
+#message {
+	width: 100%;
+	height: 150px;
+}
+
+.require {
+	font-weight: bold;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+#form-footer {
+	height: 100px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+
+
+/* Sur les écrans, quand la largeur de la fenêtre fait au maximum 1280px */
+@media screen and (min-width: 768px) and (max-width: 960px){
+	.wrapper{
+		width: auto;
+	}
+	#nav{
+		width: auto;
+	}
+
+/** carrousel **/
+	#carrousel{
+		display:none;
+	}
+
+/** Articles **/
+	#event{
+		margin-top: 20px;
+		width: auto;
+	}
+	#event .articles{
+		width:100%;
+		flex-wrap: wrap;
+	}
+
+	#event article {
+		width: 40%;
+		height: 400px;
+		display: block;
+		margin-bottom: 20px !important;
+	}
+	.article img {
+		width: 100%;
+		height: 300px;
+	}
+	.article h4 {
+		height: 30%;
+	}
+}
+
+
+@media screen and (max-width: 768px){
+	.wrapper{
+		width: auto;
+	}
+	#nav{
+		width: auto;
+	}
+	#carrousel{
+		display:none;
+	}
+
+	/** Articles **/
+	#event{
+		margin-top: 20px;
+		width: auto;
+	}
+	#event .articles{
+		width:100%;
+		flex-direction: column;
+	}
+
+	#event article {
+		width: 100%;
+		height: 400px;
+		display: block;
+		margin-bottom: 20px !important;
+
+	}
+	.article img {
+		width: 100%;
+		height: 300px;
+	}
+	.article h4 {
+		height: 30%;
+	}
+
+}
